@@ -40,7 +40,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h2 class="couple-names" id="coupleNames">Carlos ❤️ Ana</h2>
+                <h2 class="couple-names" id="coupleNames">Carlos ❤️ Bruna</h2>
                 <p class="relationship-status" id="relationshipStatus">Namorando</p>
                 
                 <!-- Notificação de evento especial -->
@@ -210,13 +210,19 @@
                 <div class="tab-content" id="media">
                     <div class="form-group">
                         <label for="musicUrl">URL da Música de Fundo</label>
-                        <input type="url" id="musicUrl" placeholder="https://exemplo.com/musica.mp3">
-                        <small>Formatos suportados: MP3, M4A, OGG</small>
+                        <input type="url" id="musicUrl" placeholder="Cole aqui o link direto do arquivo MP3">
+                        <small class="help-text">
+                            <strong>💡 Como obter links de música:</strong><br>
+                            <strong>Spotify:</strong> Use um conversor online como <a href="https://spotifydown.com" target="_blank">SpotifyDown.com</a> (apenas para músicas suas) e hospede o MP3<br>
+                            <strong>YouTube:</strong> Converta em <a href="https://ytmp3.nu" target="_blank">YTMP3.nu</a> e faça upload no Dropbox/Google Drive<br>
+                            <strong>Arquivo próprio:</strong> Hospede em <a href="https://dropbox.com" target="_blank">Dropbox</a>, <a href="https://drive.google.com" target="_blank">Google Drive</a> ou <a href="https://soundcloud.com" target="_blank">SoundCloud</a><br>
+                            <em>📌 O link deve ser direto para o arquivo (.mp3, .m4a, .ogg)</em>
+                        </small>
                     </div>
                     
                     <div class="form-group">
                         <label for="musicTitle">Título da Música</label>
-                        <input type="text" id="musicTitle" placeholder="Nossa música especial">
+                        <input type="text" id="musicTitle" placeholder="Ex: Perfect - Ed Sheeran">
                     </div>
                     
                     <div class="form-group">
@@ -233,14 +239,13 @@
                                     <polyline points="17 8 12 3 7 8"></polyline>
                                     <line x1="12" y1="3" x2="12" y2="15"></line>
                                 </svg>
-                                📸 Escolher Fotos do Celular/Galeria
+                                �️ Escolher Fotos da Galeria
                             </label>
                             <input 
                                 type="file" 
                                 id="uploadImageFile" 
                                 accept="image/*" 
-                                multiple 
-                                capture="environment"
+                                multiple
                                 style="display: none;">
                             <small>Você pode selecionar várias fotos de uma vez</small>
                         </div>

@@ -768,6 +768,8 @@ function saveSettings() {
     config.status = document.getElementById('relationshipStatus').value;
     config.startDate = document.getElementById('startDate').value;
     
+    console.log('💾 Salvando configurações:', { person1: config.person1, person2: config.person2, status: config.status });
+    
     config.musicUrl = document.getElementById('musicUrl').value;
     config.musicTitle = document.getElementById('musicTitle').value;
     
@@ -791,6 +793,7 @@ function saveSettings() {
     // Salvar e aplicar
     saveConfig();
     applyConfig();
+    updateCoupleInfo(); // Atualizar nomes e status na frente
     renderGallery();
     
     // Atualizar música se mudou
