@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contador de tempo de relacionamento - Celebre cada momento do seu amor">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nosso Tempo Juntos ❤️">
+    <meta property="og:description" content="Contando cada segundo do nosso amor">
+    <meta property="og:image" content="./assets/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Nosso Tempo Juntos ❤️">
+    <meta property="twitter:description" content="Contando cada segundo do nosso amor">
+    <meta property="twitter:image" content="./assets/og-image.jpg">
+    
+    <title>Nosso Tempo Juntos ❤️</title>
+    <link rel="icon" type="image/png" href="./assets/favicon.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">❤️ Nosso Tempo</h1>
+            <button class="settings-btn" id="settingsBtn" aria-label="Abrir configurações">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12 1v6m0 6v6m-6-6h6m6 0h6M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M4.93 19.07l4.24-4.24m5.66-5.66l4.24-4.24"></path>
+                </svg>
+                Ajustes
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section - Contador Principal -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="couple-names" id="coupleNames">Carlos ❤️ Ana</h2>
+                <p class="relationship-status" id="relationshipStatus">Namorando</p>
+                
+                <!-- Notificação de evento especial -->
+                <div class="special-event" id="specialEvent" style="display: none;">
+                    <div class="confetti" id="confetti"></div>
+                    <p class="event-message" id="eventMessage"></p>
+                </div>
+
+                <!-- Contador ao vivo -->
+                <div class="counter-grid" id="counterGrid">
+                    <div class="counter-item">
+                        <span class="counter-value" id="years">0</span>
+                        <span class="counter-label">Anos</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-value" id="months">0</span>
+                        <span class="counter-label">Meses</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-value" id="weeks">0</span>
+                        <span class="counter-label">Semanas</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-value" id="days">0</span>
+                        <span class="counter-label">Dias</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-value" id="hours">0</span>
+                        <span class="counter-label">Horas</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-value" id="minutes">0</span>
+                        <span class="counter-label">Minutos</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-value" id="seconds">0</span>
+                        <span class="counter-label">Segundos</span>
+                    </div>
+                </div>
+
+                <p class="since-date" id="sinceDate">Desde 01 de Janeiro de 2020</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria de Imagens -->
+    <section class="gallery-section">
+        <div class="container">
+            <h3 class="section-title">Nossos Momentos</h3>
+            <div class="gallery-container">
+                <button class="gallery-nav gallery-prev" id="galleryPrev" aria-label="Imagem anterior">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                
+                <div class="gallery-track" id="galleryTrack">
+                    <!-- Imagens serão inseridas dinamicamente -->
+                </div>
+                
+                <button class="gallery-nav gallery-next" id="galleryNext" aria-label="Próxima imagem">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="gallery-dots" id="galleryDots"></div>
+        </div>
+    </section>
+
+    <!-- Player de Música -->
+    <section class="music-section">
+        <div class="container">
+            <div class="music-player" id="musicPlayer">
+                <div class="music-info">
+                    <svg class="music-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18V5l12-2v13M9 18c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3zm12-5c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"></path>
+                    </svg>
+                    <span class="music-title" id="musicTitle">Nossa música</span>
+                </div>
+                
+                <div class="music-controls">
+                    <button class="music-btn" id="playPauseBtn" aria-label="Tocar música">
+                        <svg class="play-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        <svg class="pause-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+                            <rect x="6" y="4" width="4" height="16"></rect>
+                            <rect x="14" y="4" width="4" height="16"></rect>
+                        </svg>
+                    </button>
+                    
+                    <div class="volume-control">
+                        <button class="music-btn" id="muteBtn" aria-label="Silenciar">
+                            <svg class="volume-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="mute-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </button>
+                        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70" aria-label="Volume">
+                    </div>
+                </div>
+            </div>
+            
+            <audio id="backgroundMusic" preload="metadata"></audio>
+        </div>
+    </section>
+
+    <!-- Modal de Configurações -->
+    <div class="modal" id="settingsModal" role="dialog" aria-labelledby="settingsTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="settingsTitle">⚙️ Configurações</h2>
+                <button class="modal-close" id="closeModal" aria-label="Fechar configurações">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <p class="privacy-note">🔒 Todas as configurações ficam armazenadas apenas no seu dispositivo (localStorage).</p>
+                
+                <!-- Abas -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="general">Geral</button>
+                    <button class="tab" data-tab="media">Mídia</button>
+                    <button class="tab" data-tab="appearance">Aparência</button>
+                    <button class="tab" data-tab="advanced">Avançado</button>
+                </div>
+
+                <!-- Aba Geral -->
+                <div class="tab-content active" id="general">
+                    <div class="form-group">
+                        <label for="person1Name">Nome (Pessoa 1)</label>
+                        <input type="text" id="person1Name" placeholder="Carlos">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="person2Name">Nome (Pessoa 2)</label>
+                        <input type="text" id="person2Name" placeholder="Ana">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="relationshipStatus">Status do Relacionamento</label>
+                        <select id="relationshipStatus">
+                            <option value="Namorando">Namorando</option>
+                            <option value="Noivos">Noivos</option>
+                            <option value="Casados">Casados</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="startDate">Data Inicial</label>
+                        <input type="date" id="startDate">
+                    </div>
+                </div>
+
+                <!-- Aba Mídia -->
+                <div class="tab-content" id="media">
+                    <div class="form-group">
+                        <label for="musicUrl">URL da Música de Fundo</label>
+                        <input type="url" id="musicUrl" placeholder="https://exemplo.com/musica.mp3">
+                        <small>Formatos suportados: MP3, M4A, OGG</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="musicTitle">Título da Música</label>
+                        <input type="text" id="musicTitle" placeholder="Nossa música especial">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Imagens da Galeria</label>
+                        <div class="image-list" id="imageList">
+                            <!-- Imagens listadas aqui -->
+                        </div>
+                        
+                        <!-- Upload de fotos do celular/computador -->
+                        <div class="upload-image-form">
+                            <label for="uploadImageFile" class="upload-label">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                📸 Escolher Fotos do Celular/Galeria
+                            </label>
+                            <input 
+                                type="file" 
+                                id="uploadImageFile" 
+                                accept="image/*" 
+                                multiple 
+                                capture="environment"
+                                style="display: none;">
+                            <small>Você pode selecionar várias fotos de uma vez</small>
+                        </div>
+                        
+                        <!-- Ou adicionar por URL -->
+                        <div class="add-image-form">
+                            <input type="url" id="newImageUrl" placeholder="Ou cole URL de imagem online">
+                            <button type="button" class="btn-secondary" id="addImageBtn">Adicionar URL</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aba Aparência -->
+                <div class="tab-content" id="appearance">
+                    <div class="form-group">
+                        <label for="theme">Tema</label>
+                        <select id="theme">
+                            <option value="light">Claro</option>
+                            <option value="dark">Escuro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="primaryColor">Cor Primária</label>
+                        <input type="color" id="primaryColor" value="#ff6b9d">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fontFamily">Fonte</label>
+                        <select id="fontFamily">
+                            <option value="system-ui, -apple-system, 'Segoe UI', sans-serif">Sistema (Padrão)</option>
+                            <option value="Georgia, serif">Georgia (Serifada)</option>
+                            <option value="'Courier New', monospace">Courier (Monoespaçada)</option>
+                            <option value="'Comic Sans MS', cursive">Comic Sans (Casual)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bgType">Plano de Fundo</label>
+                        <select id="bgType">
+                            <option value="solid">Cor Sólida</option>
+                            <option value="gradient">Gradiente</option>
+                            <option value="image">Imagem (URL)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="bgImageGroup" style="display: none;">
+                        <label for="bgImage">URL da Imagem de Fundo</label>
+                        <input type="url" id="bgImage" placeholder="https://exemplo.com/fundo.jpg">
+                    </div>
+                </div>
+
+                <!-- Aba Avançado -->
+                <div class="tab-content" id="advanced">
+                    <div class="form-group">
+                        <label for="dateFormat">Formato de Data</label>
+                        <select id="dateFormat">
+                            <option value="pt-BR">Brasileiro (DD/MM/AAAA)</option>
+                            <option value="en-US">Americano (MM/DD/YYYY)</option>
+                            <option value="en-GB">Europeu (DD/MM/YYYY)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="timeFormat">Formato de Hora</label>
+                        <select id="timeFormat">
+                            <option value="24">24 horas</option>
+                            <option value="12">12 horas (AM/PM)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="timezoneOffset">Fuso Horário (UTC offset em horas)</label>
+                        <input type="number" id="timezoneOffset" placeholder="0" step="1" min="-12" max="14">
+                        <small>Deixe vazio para usar o fuso do navegador. Ex: -3 para Brasília</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Importar/Exportar Configurações</label>
+                        <div class="button-group">
+                            <button type="button" class="btn-secondary" id="exportBtn">Exportar JSON</button>
+                            <button type="button" class="btn-secondary" id="importBtn">Importar JSON</button>
+                            <input type="file" id="importFile" accept=".json" style="display: none;">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Compartilhar</label>
+                        <button type="button" class="btn-secondary" id="shareBtn">Gerar Link de Compartilhamento</button>
+                        <input type="text" id="shareUrl" readonly style="display: none; margin-top: 8px;">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" id="resetBtn">Resetar</button>
+                <button type="button" class="btn-primary" id="saveBtn">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Feito com ❤️ para eternizar momentos especiais</p>
+            <p class="footer-small">Todas as configurações são armazenadas localmente no seu navegador</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
