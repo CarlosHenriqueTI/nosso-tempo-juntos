@@ -23,7 +23,7 @@ const i18n = {
    =========================== */
 const defaultConfig = {
     person1: 'Carlos',
-    person2: 'Ana',
+    person2: 'Bruna',
     status: 'Namorando',
     startDate: '2020-01-01',
     musicUrl: '',
@@ -685,7 +685,7 @@ function loadSettingsToForm() {
     // Geral
     document.getElementById('person1Name').value = config.person1;
     document.getElementById('person2Name').value = config.person2;
-    document.getElementById('relationshipStatus').value = config.status;
+    document.getElementById('relationshipStatusSelect').value = config.status;
     document.getElementById('startDate').value = config.startDate;
     
     // Mídia
@@ -765,7 +765,7 @@ function saveSettings() {
     // Coletar valores do formulário
     config.person1 = document.getElementById('person1Name').value || defaultConfig.person1;
     config.person2 = document.getElementById('person2Name').value || defaultConfig.person2;
-    config.status = document.getElementById('relationshipStatus').value;
+    config.status = document.getElementById('relationshipStatusSelect').value;
     config.startDate = document.getElementById('startDate').value;
     
     console.log('💾 Salvando configurações:', { person1: config.person1, person2: config.person2, status: config.status });
