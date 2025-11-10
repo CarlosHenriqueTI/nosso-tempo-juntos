@@ -504,6 +504,16 @@ function setupMusicPlayer(url, title) {
     const html5Player = document.getElementById('html5Player');
     const spotifyEmbed = document.getElementById('spotifyEmbed');
     const musicTitle = document.getElementById('musicTitle');
+    const musicPlayerContainer = document.getElementById('musicPlayer');
+    
+    if (!url || url.trim() === '') {
+        // Se não há música, esconder o player completamente
+        musicPlayerContainer.style.display = 'none';
+        return;
+    }
+    
+    // Mostrar o player
+    musicPlayerContainer.style.display = 'block';
     
     // Detectar se é link do Spotify
     const isSpotify = url.includes('spotify.com/track/') || url.includes('spotify.com/playlist/') || url.includes('spotify.com/album/');
@@ -514,11 +524,11 @@ function setupMusicPlayer(url, title) {
         // Converter link do Spotify para embed
         let embedUrl = url;
         
-        // Converter link normal para embed
+        // Converter link normal para embed e remover parâmetros
         if (url.includes('open.spotify.com')) {
-            embedUrl = url.replace('open.spotify.com', 'open.spotify.com/embed');
-            // Remover parâmetros desnecessários
-            embedUrl = embedUrl.split('?')[0];
+            // Remove tudo após ? ou & (parâmetros de compartilhamento)
+            const cleanUrl = url.split('?')[0].split('&')[0];
+            embedUrl = cleanUrl.replace('open.spotify.com', 'open.spotify.com/embed');
         }
         
         // Configurar iframe do Spotify
