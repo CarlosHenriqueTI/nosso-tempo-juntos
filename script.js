@@ -180,13 +180,25 @@ function updateCoupleInfo() {
     const relationshipStatus = document.getElementById('relationshipStatus');
     const sinceDate = document.getElementById('sinceDate');
     
-    coupleNames.textContent = `${config.person1} ❤️ ${config.person2}`;
+    if (!coupleNames || !relationshipStatus || !sinceDate) {
+        console.error('❌ Elementos não encontrados:', { coupleNames, relationshipStatus, sinceDate });
+        return;
+    }
+    
+    // Atualizar nomes
+    const namesText = `${config.person1} ❤️ ${config.person2}`;
+    coupleNames.textContent = namesText;
+    console.log('✅ Nomes atualizados:', namesText);
+    
+    // Atualizar status (força atualização direta)
     relationshipStatus.textContent = config.status;
+    console.log('✅ Status atualizado:', config.status);
     
     // Formatar data inicial
     const startDate = new Date(config.startDate + 'T00:00:00');
     const formatted = formatDate(startDate);
     sinceDate.textContent = `Desde ${formatted}`;
+    console.log('✅ Data atualizada:', formatted);
 }
 
 /* ===========================
@@ -621,6 +633,14 @@ function initSettingsFields() {
         bgImageGroup.style.display = bgTypeSelect.value === 'image' ? 'block' : 'none';
     });
     
+    // Listener para visualizar mudanças de status em tempo real (preview)
+    const statusSelect = document.getElementById('relationshipStatusSelect');
+    if (statusSelect) {
+        statusSelect.addEventListener('change', (e) => {
+            console.log('🔄 Status selecionado no formulário:', e.target.value);
+        });
+    }
+    
     // Upload de imagens do celular/galeria
     document.getElementById('uploadImageFile').addEventListener('change', (e) => {
         const files = e.target.files;
@@ -807,7 +827,23 @@ function saveSettings() {
     // Salvar e aplicar
     saveConfig();
     applyConfig();
-    updateCoupleInfo(); // Atualizar nomes e status na frente
+    
+    // Forçar atualização imediata do status e nomes no DOM
+    const relationshipStatusElement = document.getElementById('relationshipStatus');
+    const coupleNamesElement = document.getElementById('coupleNames');
+    
+    if (relationshipStatusElement) {
+        relationshipStatusElement.textContent = config.status;
+        console.log('🔄 Status forçado para:', config.status);
+    }
+    
+    if (coupleNamesElement) {
+        coupleNamesElement.textContent = `${config.person1} ❤️ ${config.person2}`;
+        console.log('🔄 Nomes forçados para:', config.person1, config.person2);
+    }
+    
+    // Chamar updateCoupleInfo também
+    updateCoupleInfo();
     renderGallery();
     
     // Atualizar música se mudou
