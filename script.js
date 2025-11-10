@@ -21,7 +21,10 @@ const i18n = {
 /* ===========================
    CONFIGURAÇÕES PADRÃO
    =========================== */
+const CONFIG_VERSION = '1.1'; // Versão da configuração para forçar reset quando necessário
+
 const defaultConfig = {
+    version: CONFIG_VERSION,
     person1: 'Carlos',
     person2: 'Bruna',
     status: 'Namorando',
@@ -100,6 +103,15 @@ function loadConfig() {
         const saved = localStorage.getItem('relationshipConfig');
         if (saved) {
             const parsed = JSON.parse(saved);
+            
+            // Verificar se a versão da config mudou - se sim, resetar para valores padrão
+            if (!parsed.version || parsed.version !== CONFIG_VERSION) {
+                console.log('🔄 Versão da configuração desatualizada. Aplicando padrões...');
+                config = { ...defaultConfig };
+                saveConfig(); // Salvar nova versão
+                return;
+            }
+            
             // Mesclar com configurações padrão para garantir que novas propriedades existam
             config = { ...defaultConfig, ...parsed };
             console.log('📥 Configurações carregadas do localStorage');
@@ -114,6 +126,8 @@ function loadConfig() {
 
 function saveConfig() {
     try {
+        // Garantir que a versão está sempre atualizada
+        config.version = CONFIG_VERSION;
         localStorage.setItem('relationshipConfig', JSON.stringify(config));
         console.log('💾 Configurações salvas');
     } catch (error) {
