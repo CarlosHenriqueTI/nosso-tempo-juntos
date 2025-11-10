@@ -638,12 +638,25 @@ body > * {
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
     box-shadow: 0 20px 60px var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.spotify-player {
+    width: 100%;
+}
+
+.spotify-player iframe {
+    width: 100%;
+    min-height: 152px;
+    border-radius: 12px;
+}
+
+.html5-player {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: var(--spacing-md);
-    position: relative;
-    overflow: hidden;
 }
 
 .music-player::before {

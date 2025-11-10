@@ -464,10 +464,9 @@ function initMusicPlayer() {
     const volumeSlider = document.getElementById('volumeSlider');
     const musicTitle = document.getElementById('musicTitle');
     
-    // Configurar música
+    // Detectar tipo de música e configurar player apropriado
     if (config.musicUrl) {
-        audioElement.src = config.musicUrl;
-        musicTitle.textContent = config.musicTitle || 'Nossa música';
+        setupMusicPlayer(config.musicUrl, config.musicTitle);
     }
     
     // Volume inicial
@@ -498,6 +497,49 @@ function initMusicPlayer() {
     audioElement.addEventListener('loadedmetadata', () => {
         console.log('🎵 Música carregada');
     });
+}
+
+function setupMusicPlayer(url, title) {
+    const spotifyPlayer = document.getElementById('spotifyPlayer');
+    const html5Player = document.getElementById('html5Player');
+    const spotifyEmbed = document.getElementById('spotifyEmbed');
+    const musicTitle = document.getElementById('musicTitle');
+    
+    // Detectar se é link do Spotify
+    const isSpotify = url.includes('spotify.com/track/') || url.includes('spotify.com/playlist/') || url.includes('spotify.com/album/');
+    
+    if (isSpotify) {
+        console.log('🎧 Detectado link do Spotify - usando player oficial');
+        
+        // Converter link do Spotify para embed
+        let embedUrl = url;
+        
+        // Converter link normal para embed
+        if (url.includes('open.spotify.com')) {
+            embedUrl = url.replace('open.spotify.com', 'open.spotify.com/embed');
+            // Remover parâmetros desnecessários
+            embedUrl = embedUrl.split('?')[0];
+        }
+        
+        // Configurar iframe do Spotify
+        spotifyEmbed.src = embedUrl;
+        
+        // Mostrar player do Spotify e esconder HTML5
+        spotifyPlayer.style.display = 'block';
+        html5Player.style.display = 'none';
+        
+        console.log('✅ Player do Spotify configurado:', embedUrl);
+    } else {
+        console.log('🎵 Usando player HTML5 para arquivo de áudio');
+        
+        // Configurar player HTML5
+        audioElement.src = url;
+        musicTitle.textContent = title || 'Nossa música';
+        
+        // Mostrar player HTML5 e esconder Spotify
+        spotifyPlayer.style.display = 'none';
+        html5Player.style.display = 'flex';
+    }
 }
 
 function togglePlayPause() {
@@ -846,10 +888,9 @@ function saveSettings() {
     updateCoupleInfo();
     renderGallery();
     
-    // Atualizar música se mudou
-    if (audioElement.src !== config.musicUrl && config.musicUrl) {
-        audioElement.src = config.musicUrl;
-        audioElement.load();
+    // Atualizar música se mudou (suporta Spotify e MP3)
+    if (config.musicUrl) {
+        setupMusicPlayer(config.musicUrl, config.musicTitle);
     }
     
     closeSettingsModal();
